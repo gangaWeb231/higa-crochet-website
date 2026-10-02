@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-k(me42ceecb-@910cpfw@92j4qyl044efkj0$)6mw(tbc3^@c6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "higa-crochet-website.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
