@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | HIGA</title>
+     
+    <link rel="stylesheet" href="{% static 'app1/css/mystyle.css' %}?v=16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> 
+</head> 
+<body> 
+ 
+<!-- Navbar --> 
+<nav class="navbar"> 
+    <div class="logo"> 
+        <img src="{% static 'app1/images/logo.png' %}" alt="HIGA Logo"> 
+    </div> 
+ 
+    <div class="menu-toggle" id="menu-toggle"> 
+        <i class="fa-solid fa-bars"></i> 
+    </div> 
+ 
+    <div class="nav-links-right" id="nav-links"> 
+        <a href="/" onclick="closeMenu()">HOME</a> 
+        <a href="{% url 'shop' %}">SHOP</a> 
+        <a href="#about">ABOUT</a> 
+        <a href="#contact">CONTACT</a> 
+       
+        <a href="{% url 'login' %}" class="nav-cart" title="Login"> 
+            <i class="fa-solid fa-user"></i> 
+        </a> 
+ 
+    </div> 
+</nav> 
+ 
+<section class="product-details"> 
+ 
+    <!-- PRODUCT IMAGE --> 
+    <div class="product-gallery"> 
+        <img src="{% static product.image %}" 
+             class="main-image" 
+             alt="{{ product.name }}"> 
+    </div> 
+ 
+    <!-- PRODUCT INFORMATION --> 
+    <div class="product-content"> 
+ 
+        <h1>{{ product.name }}</h1> 
+ 
+        <div class="derating"> 
+            <span>{{ product.rating }}</span> 
+        </div> 
+ 
+        <!-- DESCRIPTION --> 
+        <p class="description"> 
+            {{ product.description }} 
+        </p> 
+ 
+        <!-- PRICE --> 
+        <div class="deprice-box"> 
+            <span class="deprice"> 
+                ₹{{ product.price }} 
+            </span> 
+ 
+            {% if product.old_price %} 
+            <span class="deold-price"> 
+                ₹{{ product.old_price }} 
+            </span> 
+            {% endif %} 
+        </div> 
+ 
+        <!-- PRODUCT DETAILS --> 
+        <div class="details"> 
+ 
+            <p> 
+                <strong>Material:</strong> 
+                100% Cotton <strong>Size:</strong> 
+                Customized 
+            </p> 
+ 
+        </div> 
+ 
+        <p class="custom-size-note"> 
+            <i class="fa-solid fa-circle-info"></i> 
+            Customized sizes may have an additional charge. 
+        </p> 
+ 
+        <!-- QUANTITY --> 
+        <div class="quantity"> 
+ 
+            <button type="button" 
+                    onclick="decreaseQty()"> 
+                - 
+            </button> 
+ 
+            <input type="text" 
+                   id="quantity" 
+                   value="1" 
+                   readonly> 
+ 
+            <button type="button" 
+                    onclick="increaseQty()"> 
+                + 
+            </button> 
+ 
+        </div> 
+ 
+        <!-- ACTION BUTTONS --> 
+        <div class="action-buttons"> 
+ 
+            <button 
+                type="button" 
+                class="decart-btn" 
+                data-name="{{ product.name|escapejs }}" 
+                data-price="{{ product.price }}" 
+                data-image="{% static product.image %}" 
+                onclick="addToCart( 
+                    this, 
+                    this.dataset.name, 
+                    Number(this.dataset.price) 
+                )"> 
+ 
+                <i class="fa-solid fa-cart-shopping"></i> 
+                Add to Cart 
+ 
+            </button> 
+ 
+            <form action="{% url 'checkout' %}"> 
+ 
+                <input type="hidden" 
+                       name="product" 
+                       value="{{ product.name }}"> 
+ 
+                <input type="hidden" 
+                       name="price" 
+                       value="{{ product.price }}"> 
+ 
+                <input type="hidden" 
+                       name="quantity" 
+                       id="buyQuantity" 
+                       value="1"> 
+ 
+                {% if user.is_authenticated %} 
+ 
+                    <button type="button" 
+                            class="buy-btn" 
+                            onclick="goToCheckout()"> 
+ 
+                        Buy Now 
+ 
+                    </button> 
+ 
+                {% else %} 
+ 
+                    <button type="button" 
+                            class="buy-btn" 
+                            onclick="window.location.href='/login/'"> 
+ 
+                        Buy Now 
+ 
+                    </button> 
+ 
+                {% endif %} 
+ 
+            </form> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</section> 
+ 
+<div id="buyPopup" class="popup"> 
+ 
+    <div class="popup-content"> 
+ 
+        <span class="close" onclick="closePopup()">&times;</span> 
+ 
+        <h2>Place Your Order</h2> 
+ 
+        <form method="POST" action="{% url 'place_order' %}"> 
+            {% csrf_token %} 
+ 
+            <input type="text" name="name" placeholder="Your Name" required> 
+            <input type="text" name="phone" placeholder="Phone Number" required> 
+            <input type="text" name="email" placeholder="Your Email" required> 
+            <input type="text" name="name" placeholder="House / Flat" required> 
+            <input type="text" name="name" placeholder="City" required> 
+            <input type="text" name="Number" placeholder="Pincode" required> 
+            <textarea name="address" placeholder="Delivery Address" required></textarea> 
+ 
+            <input type="hidden" name="product" value="Bow Frock"> 
+ 
+            <button type="submit" class="buy-btn"> 
+                Place Order 
+            </button> 
+ 
+        </form> 
+ 
+    </div> 
+ 
+</div> 
+ 
+<div id="notification" class="notification"></div> 
+ 
+<script src="{% static 'app1/js/myscript.js' %}"></script> 
+ 
+<script> 
+ 
+/* ==================== BUY NOW ==================== */ 
+ 
+function goToCheckout() { 
+ 
+    const quantity = 
+        Number(document.getElementById("quantity").value) || 1; 
+ 
+    const product = { 
+ 
+        name: "{{ product.name|escapejs }}", 
+ 
+        price: Number("{{ product.price }}") || 0, 
+ 
+        quantity: quantity, 
+ 
+        image: "{% static product.image %}" 
+ 
+    }; 
+ 
+    /* SAVE ONLY THE BUY NOW PRODUCT */ 
+ 
+    localStorage.setItem( 
+        "buyNowProduct", 
+        JSON.stringify(product) 
+    ); 
+ 
+    /* GO TO CHECKOUT */ 
+ 
+    window.location.href = 
+        "{% url 'checkout' %}?buy_now=true"; 
+} 
+ 
+ 
+// ==================== CART FUNCTIONS ==================== 
+ 
+let cart = JSON.parse(localStorage.getItem("cart")) || []; 
+ 
+ 
+function saveCart() { 
+ 
+    localStorage.setItem( 
+        "cart", 
+        JSON.stringify(cart) 
+    ); 
+ 
+} 
+ 
+ 
+function addToCart(button, name, price) { 
+ 
+    /* GET PRODUCT IMAGE */ 
+ 
+    const image = 
+        button.dataset.image; 
+ 
+    /* ADD PRODUCT WITH IMAGE */ 
+ 
+    cart.push({ 
+ 
+        name: name, 
+ 
+        price: price, 
+ 
+        quantity: 1, 
+ 
+        image: image 
+ 
+    }); 
+ 
+    saveCart(); 
+ 
+    // Change button text 
+    button.innerHTML = 
+        '<i class="fa-solid fa-circle-check"></i> Added to Cart'; 
+ 
+    // Change button appearance 
+    button.style.background = "#6F7B4D"; 
+    button.style.color = "#fff"; 
+ 
+    // Prevent clicking again 
+    button.disabled = true; 
+ 
+    showNotification(name + " added to cart!"); 
+ 
+} 
+ 
+ 
+function removeCartItem(index) { 
+ 
+    cart.splice(index, 1); 
+ 
+    saveCart(); 
+ 
+} 
+ 
+ 
+function clearCartItems() { 
+ 
+    if (confirm("Are you sure you want to clear your entire cart?")) { 
+ 
+        cart = []; 
+ 
+        saveCart(); 
+ 
+        showNotification("Cart cleared successfully!"); 
+ 
+    } 
+ 
+} 
+ 
+ 
+// ==================== NOTIFICATION ==================== 
+ 
+function showNotification(message) { 
+ 
+    const notification = document.createElement("div"); 
+ 
+    notification.innerHTML = 
+        `<i class="fa-solid fa-circle-check"></i> ${message}`; 
+ 
+    notification.style.position = "fixed"; 
+    notification.style.bottom = "20px"; 
+    notification.style.right = "20px"; 
+    notification.style.left = "auto"; 
+    notification.style.top = "auto"; 
+ 
+    notification.style.background = "#6F7B4D"; 
+    notification.style.color = "#fff"; 
+    notification.style.padding = "14px 20px"; 
+    notification.style.borderRadius = "10px"; 
+    notification.style.boxShadow = "0 8px 20px rgba(0,0,0,.2)"; 
+    notification.style.zIndex = "99999"; 
+    notification.style.fontSize = "15px"; 
+ 
+    document.body.appendChild(notification); 
+ 
+    setTimeout(() => { 
+ 
+        notification.remove(); 
+ 
+    }, 2000); 
+ 
+} 
+ 
+ 
+// ==================== SUCCESS POPUP ==================== 
+ 
+function showSuccessPopup(name, total, address){ 
+ 
+    document.getElementById("successMessage").innerHTML = 
+        `Thank you <b>${name}</b><br><br> 
+        <b>Total:</b> ₹${total}<br><br> 
+        Your order will be delivered to:<br> 
+        <b>${address}</b>`; 
+ 
+    document.getElementById("successPopup").style.display = "flex"; 
+ 
+} 
+ 
+ 
+function closeSuccessPopup(){ 
+ 
+    document.getElementById("successPopup").style.display = "none"; 
+ 
+} 
+ 
+</script> 
+ 
+</body> 
+</html>

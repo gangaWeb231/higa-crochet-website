@@ -1,0 +1,2845 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HIGA | Shop</title>
+
+    <link rel="stylesheet" href="{% static 'app1/css/mystyle.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{% static 'app1/images/logo.png' %}" alt="HIGA Logo">
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="nav-links-right" id="nav-links">
+
+        <a href="/" onclick="closeMenu()">HOME</a>
+
+        <a href="{% url 'shop' %}">SHOP</a>
+
+        <a href="#about">ABOUT</a>
+
+        <a href="#contact">CONTACT</a>
+
+        <div class="nav-cart" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+
+        <a href="{% url 'login' %}" class="nav-cart" title="Login">
+            <i class="fa-solid fa-user"></i>
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= SHOP HEADER ================= -->
+
+<section class="shop-header">
+
+    <h1>Our Crochet Collection</h1>
+
+    <p>
+        Handmade crochet creations crafted with love.
+    </p>
+
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="shop-products">
+
+    <div class="product-grid">
+
+
+        <!-- ================= PRODUCT 1 ================= -->
+
+        <div class="product-card" data-category="baby">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 1 %}">
+                    <img src="{% static 'app1/images/frock.png' %}"
+                         alt="Bow Frock">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Bow Frock"
+   data-price="1600"
+   data-image="{% static 'app1/images/frock.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Bow Frock',1600); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Bow Frock</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1600</span>
+                    <span class="old-price">₹1800</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 2 ================= -->
+
+        <div class="product-card" data-category="keychains">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 2 %}">
+                    <img src="{% static 'app1/images/chick.png' %}"
+                         alt="Chick Keychain">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Chick Keychain"
+   data-price="399"
+   data-image="{% static 'app1/images/chick.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Chick Keychain',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Chick Keychain</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.9)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹499</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 3 ================= -->
+
+        <div class="product-card" data-category="flowers">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 3 %}">
+                    <img src="{% static 'app1/images/peony.png' %}"
+                         alt="Peony Flower">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Peony Flower"
+   data-price="299"
+   data-image="{% static 'app1/images/peony.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Peony Flower',299); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Peony Flower</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹299</span>
+                    <span class="old-price">₹399</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 4 ================= -->
+
+        <div class="product-card" data-category="bags">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 4 %}">
+                    <img src="{% static 'app1/images/sunflowerbag.png' %}"
+                         alt="Sunflower Bag">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Sunflower Bag"
+   data-price="1200"
+   data-image="{% static 'app1/images/sunflowerbag.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Sunflower Bag',1200); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Sunflower Bag</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1200</span>
+                    <span class="old-price">₹1500</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 5 ================= -->
+
+        <div class="product-card" data-category="baby">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 5 %}">
+                    <img src="{% static 'app1/images/babybootie.png' %}"
+                         alt="Baby Booties">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Baby Booties"
+   data-price="450"
+   data-image="{% static 'app1/images/babybootie.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Baby Booties',450); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Baby Booties</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹450</span>
+                    <span class="old-price">₹550</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 6 ================= -->
+
+        <div class="product-card" data-category="tops">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 6 %}">
+                    <img src="{% static 'app1/images/cardigan.png' %}"
+                         alt="Cardigan">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Cardigan"
+   data-price="2200"
+   data-image="{% static 'app1/images/cardigan.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Cardigan',2200); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Cardigan</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹2200</span>
+                    <span class="old-price">₹2500</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 7 ================= -->
+
+        <div class="product-card" data-category="keychains">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 7 %}">
+                    <img src="{% static 'app1/images/daisy.png' %}"
+                         alt="Daisy Keychain">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Daisy Keychain"
+   data-price="250"
+   data-image="{% static 'app1/images/daisy.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Daisy Keychain',250); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Daisy Keychain</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹250</span>
+                    <span class="old-price">₹300</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 8 ================= -->
+
+        <div class="product-card" data-category="bags">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 8 %}">
+                    <img src="{% static 'app1/images/bowbag.png' %}"
+                         alt="Bow Handbag">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Bow Handbag"
+   data-price="1600"
+   data-image="{% static 'app1/images/bowbag.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Bow Handbag',1600); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Bow Handbag</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1600</span>
+                    <span class="old-price">₹1800</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 9 ================= -->
+
+        <div class="product-card" data-category="flowers">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 9 %}">
+                    <img src="{% static 'app1/images/lilly.png' %}"
+                         alt="Lilly Flower">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Lilly Flower"
+   data-price="300"
+   data-image="{% static 'app1/images/lilly.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Lilly Flower',300); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Lilly Flower</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(4)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹300</span>
+                    <span class="old-price">₹400</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 10 ================= -->
+
+        <div class="product-card" data-category="tops">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 10 %}">
+                    <img src="{% static 'app1/images/cottagecore.png' %}"
+                         alt="Cottagecore Top">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Cottagecore Top"
+   data-price="1700"
+   data-image="{% static 'app1/images/cottagecore.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Cottagecore Top',1700); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Cottagecore Top</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1700</span>
+                    <span class="old-price">₹1800</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 11 ================= -->
+
+        <div class="product-card" data-category="baby">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 11 %}">
+                    <img src="{% static 'app1/images/romper.png' %}"
+                         alt="Romper Set">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Romper Set"
+   data-price="2500"
+   data-image="{% static 'app1/images/romper.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Romper Set',2500); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Romper Set</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹2500</span>
+                    <span class="old-price">₹3000</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 12 ================= -->
+
+        <div class="product-card" data-category="keychains">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 12 %}">
+                    <img src="{% static 'app1/images/panda.png' %}"
+                         alt="Panda Keychain">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Panda Keychain"
+   data-price="399"
+   data-image="{% static 'app1/images/panda.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Panda Keychain',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Panda Keychain</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹499</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 13 ================= -->
+
+        <div class="product-card" data-category="accessories">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 13 %}">
+                    <img src="{% static 'app1/images/scrunchies.png' %}"
+                         alt="Scrunchies">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Scrunchies"
+   data-price="150"
+   data-image="{% static 'app1/images/scrunchies.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Scrunchies',150); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Scrunchies</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹150</span>
+                    <span class="old-price">₹200</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 14 ================= -->
+
+        <div class="product-card" data-category="flowers">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 14 %}">
+                    <img src="{% static 'app1/images/winerose.png' %}"
+                         alt="Wine Rose">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Wine Rose"
+   data-price="650"
+   data-image="{% static 'app1/images/winerose.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Wine Rose',650); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Wine Rose</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹650</span>
+                    <span class="old-price">₹700</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 15 ================= -->
+
+        <div class="product-card" data-category="tops">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 15 %}">
+                    <img src="{% static 'app1/images/peplumtop.png' %}"
+                         alt="Peplum Top">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Peplum Top"
+   data-price="2000"
+   data-image="{% static 'app1/images/peplumtop.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Peplum Top',2000); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Peplum Top</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹2000</span>
+                    <span class="old-price">₹2500</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 16 ================= -->
+
+        <div class="product-card" data-category="keychains">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 16 %}">
+                    <img src="{% static 'app1/images/strawberry.png' %}"
+                         alt="Strawberry Keychain">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Strawberry Keychain"
+   data-price="299"
+   data-image="{% static 'app1/images/strawberry.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Strawberry Keychain',299); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Strawberry Keychain</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.7)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹299</span>
+                    <span class="old-price">₹399</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 17 ================= -->
+
+        <div class="product-card" data-category="accessories">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 17 %}">
+                    <img src="{% static 'app1/images/tulipband.png' %}"
+                         alt="Tulip Headband">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Tulip Headband"
+   data-price="399"
+   data-image="{% static 'app1/images/tulipband.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Tulip Headband',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Tulip Headband</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹450</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 18 ================= -->
+
+        <div class="product-card" data-category="bags">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 18 %}">
+                    <img src="{% static 'app1/images/totebag.jpeg' %}"
+                         alt="Tote Bag">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Tote Bag"
+   data-price="1200"
+   data-image="{% static 'app1/images/totebag.jpeg' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Tote Bag',1200); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Tote Bag</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1200</span>
+                    <span class="old-price">₹1300</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    
+
+    <!-- ================= PRODUCT 19 ================= -->
+
+        <div class="product-card" data-category="accessories">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 19 %}">
+                    <img src="{% static 'app1/images/bandana.png' %}"
+                         alt="Bandana">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Bandana"
+   data-price="399"
+   data-image="{% static 'app1/images/bandana.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Bandana',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Bandana</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹499</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    
+
+    <!-- ================= PRODUCT 20 ================= -->
+
+        <div class="product-card" data-category="bags">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 20 %}">
+                    <img src="{% static 'app1/images/bluebag.png' %}"
+                         alt="Granny Square Bag">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Granny Square Bag"
+   data-price="1899"
+   data-image="{% static 'app1/images/bluebag.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Granny Square Bag',1899); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Granny Square Bag</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5.0)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1899</span>
+                    <span class="old-price">₹1999</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <!-- ================= PRODUCT 21 ================= -->
+
+        <div class="product-card" data-category="baby">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 21 %}">
+                    <img src="{% static 'app1/images/cap.jpeg' %}"
+                         alt="Teddy Beanie">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Teddy Beanie"
+   data-price="299"
+   data-image="{% static 'app1/images/cap.jpeg' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Teddy Beanie',299); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Teddy Beanie</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹299</span>
+                    <span class="old-price">₹399</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    <!-- ================= PRODUCT 22 ================= -->
+
+        <div class="product-card" data-category="flowers">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 22 %}">
+                    <img src="{% static 'app1/images/cherrybloosam.png' %}"
+                         alt="Cherry Bloosom">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Cherry Bloosom"
+   data-price="399"
+   data-image="{% static 'app1/images/cherrybloosam.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Cherry Bloosom',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Cherry Bloosom</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹499</span>
+                </div>
+        </div>
+
+    </div>
+
+    <!-- ================= PRODUCT 23 ================= -->
+
+        <div class="product-card" data-category="keychains">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 23 %}">
+                    <img src="{% static 'app1/images/dog.jpeg' %}"
+                         alt="Paw Keychain">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Paw Keychain"
+   data-price="399"
+   data-image="{% static 'app1/images/dog.jpeg' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Paw Keychain',399); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Paw Keychain</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹399</span>
+                    <span class="old-price">₹499</span>
+                </div>
+
+            </div>
+
+        </div>
+    <!-- ================= PRODUCT 24 ================= -->
+
+        <div class="product-card" data-category="baby">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 24 %}">
+                    <img src="{% static 'app1/images/hang.jpeg' %}"
+                         alt="Bunny Bloom Mobile">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Bunny Bloom Mobile"
+   data-price="799"
+   data-image="{% static 'app1/images/hang.jpeg' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Bunny Bloom Mobile',799); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Bunny Bloom Mobile</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹799</span>
+                    <span class="old-price">₹899</span>
+                </div>
+
+            </div>
+
+        </div>
+    <!-- ================= PRODUCT 25 ================= -->
+
+        <div class="product-card" data-category="accessories">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 25 %}">
+                    <img src="{% static 'app1/images/hairclip.png' %}"
+                         alt="Bunny Bloom Mobile">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Blossom Clip"
+   data-price="199"
+   data-image="{% static 'app1/images/hairclip.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Blossom Clip',199); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Blossom Clip</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.5)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹199</span>
+                    <span class="old-price">₹299</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    <!-- ================= PRODUCT 26 ================= -->
+
+        <div class="product-card" data-category="tops">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 26 %}">
+                    <img src="{% static 'app1/images/shirt.jpeg' %}"
+                         alt="Mocha Strip Shirt">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Mocha Strip Shirt"
+   data-price="1599"
+   data-image="{% static 'app1/images/shirt.jpeg' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Mocha Strip Shirt',1599); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Mocha Strip Shirt</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1599</span>
+                    <span class="old-price">₹1699</span>
+                </div>
+
+            </div>
+
+        </div>
+    <!-- ================= PRODUCT 27 ================= -->
+
+        <div class="product-card" data-category="bags">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 27 %}">
+                    <img src="{% static 'app1/images/butterflybag.png' %}"
+                         alt="Butterfly Bag">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Butterfly Bag"
+   data-price="1499"
+   data-image="{% static 'app1/images/butterflybag.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Butterfly Bag',1499); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Butterfly Bag</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹1499</span>
+                    <span class="old-price">₹1599</span>
+                </div>
+
+            </div>
+
+        </div>
+    <!-- ================= PRODUCT 28 ================= -->
+
+        <div class="product-card" data-category="flowers">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 28 %}">
+                    <img src="{% static 'app1/images/rose.png' %}"
+                         alt="Rose">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Rose"
+   data-price="199"
+   data-image="{% static 'app1/images/rose.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Rose',199); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Rose</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹199</span>
+                    <span class="old-price">₹299</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 29 ================= -->
+
+        <div class="product-card" data-category="accessories">
+
+            <div class="product-image">
+
+                <a href="{% url 'product_details' 29 %}">
+                    <img src="{% static 'app1/images/clip.png' %}"
+                         alt="Flower Clip">
+                </a>
+
+                <a href="#"
+   class="cart-icon"
+   data-name="Flower Clip"
+   data-price="99"
+   data-image="{% static 'app1/images/clip.png' %}"
+   title="Add to Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+</a>
+
+                <a href="#"
+                   class="wishlist-btn"
+                   onclick="toggleWishlist(this,'Flower Clip',99); return false;"
+                   title="Add to Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>Flower Clip</h3>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.8)</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price">₹99</span>
+                    <span class="old-price">₹159</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRODUCT 30 ================= -->
+
+<div class="product-card" data-category="flowers">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 30 %}">
+            <img src="{% static 'app1/images/hibuscus.png' %}"
+                 alt="Hibiscus">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Hibiscus"
+           data-price="399"
+           data-image="{% static 'app1/images/hibuscus.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Hibiscus',399); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Hibiscus</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹399</span>
+            <span class="old-price">₹499</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 31 ================= -->
+
+<div class="product-card" data-category="keychains">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 31 %}">
+            <img src="{% static 'app1/images/icecream.png' %}"
+                 alt="Ice Cream">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Ice Cream Keychain"
+           data-price="199"
+           data-image="{% static 'app1/images/icecream.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Ice Cream Keychain',199); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Ice Cream Keychain</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹199</span>
+            <span class="old-price">₹249</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 32 ================= -->
+
+<div class="product-card" data-category="flowers">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 32 %}">
+            <img src="{% static 'app1/images/lavender.png' %}"
+                 alt="Lavender">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Lavender"
+           data-price="299"
+           data-image="{% static 'app1/images/lavender.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Lavender',299); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Lavender</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹299</span>
+            <span class="old-price">₹399</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 33 ================= -->
+
+<div class="product-card" data-category="keychains">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 33 %}">
+            <img src="{% static 'app1/images/mushroom.png' %}"
+                 alt="Mushroom">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Mushroom Keychain"
+           data-price="169"
+           data-image="{% static 'app1/images/mushroom.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Mushroom Keychain',169); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Mushroom Keychain</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹169</span>
+            <span class="old-price">₹219</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 34 ================= -->
+
+<div class="product-card" data-category="flowers">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 34 %}">
+            <img src="{% static 'app1/images/sunflower.png' %}"
+                 alt="Sunflower">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Sunflower"
+           data-price="550"
+           data-image="{% static 'app1/images/sunflower.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Sunflower',550); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Sunflower</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹550</span>
+            <span class="old-price">₹650</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 35 ================= -->
+
+<div class="product-card" data-category="baby">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 35 %}">
+            <img src="{% static 'app1/images/sweater.png' %}"
+                 alt="Sweater">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Sweater"
+           data-price="750"
+           data-image="{% static 'app1/images/sweater.png' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Sweater',750); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Sweater</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹750</span>
+            <span class="old-price">₹899</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCT 36 ================= -->
+
+<div class="product-card" data-category="baby">
+
+    <div class="product-image">
+
+        <a href="{% url 'product_details' 36 %}">
+            <img src="{% static 'app1/images/teddyromper.jpeg' %}"
+                 alt="Teddy Romper">
+        </a>
+
+        <a href="#"
+           class="cart-icon"
+           data-name="Teddy Romper"
+           data-price="999"
+           data-image="{% static 'app1/images/teddyromper.jpeg' %}"
+           title="Add to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="#"
+           class="wishlist-btn"
+           onclick="toggleWishlist(this,'Teddy Romper',999); return false;"
+           title="Add to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Teddy Romper</h3>
+
+        <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <span>(4.8)</span>
+        </div>
+
+        <div class="price-box">
+            <span class="price">₹999</span>
+            <span class="old-price">₹1199</span>
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ================= NO RESULTS ================= -->
+
+    <div id="noResults"
+         style="display: none; text-align: center; padding: 50px 20px;">
+
+        <h3>No products found</h3>
+
+        <p>There are no products in this category yet.</p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CART PANEL ================= -->
+
+<div id="cartPanel" class="cart-panel">
+
+    <div class="cart-header">
+
+        <h2>
+            Your Cart
+            <i class="fa-solid fa-cart-shopping"></i>
+        </h2>
+
+        <span class="close-cart" onclick="toggleCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <h3 id="cartTotal">
+        Total: ₹0
+    </h3>
+
+    <button onclick="openCheckout()">
+        Proceed to Checkout
+    </button>
+
+    <button onclick="clearCart()">
+        Clear Cart
+    </button>
+
+</div>
+
+
+<script>
+
+// ==================== LOGIN STATUS ====================
+
+const isLoggedIn =
+    "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
+
+
+
+// ==================== CART ====================
+
+let cart = [];
+
+try {
+
+    cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+} catch (error) {
+
+    cart = [];
+
+}
+
+
+// Make old cart data compatible
+
+if (!Array.isArray(cart)) {
+
+    cart = [];
+
+}
+
+
+cart = cart.map(item => ({
+
+    name: item.name || "",
+
+    price: Number(item.price) || 0,
+
+    image: item.image || "",
+
+    quantity:
+        Number(item.quantity) > 0
+            ? Number(item.quantity)
+            : 1
+
+}));
+
+
+
+// ==================== SAVE CART ====================
+
+function saveCart() {
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartUI();
+
+}
+
+
+
+// ==================== ADD TO CART ====================
+
+function addToCart(name, price, image = "") {
+
+    if (!isLoggedIn) {
+
+        window.location.href =
+            "{% url 'login' %}";
+
+        return;
+
+    }
+
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+
+    if (existingItem) {
+
+        existingItem.quantity += 1;
+
+    } else {
+
+        cart.push({
+
+            name: name,
+
+            price: Number(price) || 0,
+
+            image: image,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    saveCart();
+
+
+    showNotification(
+        name + " added to cart!"
+    );
+
+}
+
+
+
+// ==================== CART BUTTONS ====================
+
+function setupCartButtons() {
+
+    const cartButtons =
+        document.querySelectorAll(".cart-icon");
+
+
+    cartButtons.forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    this.dataset.name || "";
+
+
+                const price =
+                    Number(this.dataset.price) || 0;
+
+
+                const image =
+                    this.dataset.image || "";
+
+
+                if (!name) {
+
+                    return;
+
+                }
+
+
+                addToCart(
+                    name,
+                    price,
+                    image
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+
+// ==================== NOTIFICATION ====================
+
+function showNotification(message) {
+
+    const oldNotification =
+        document.querySelector(
+            ".cart-notification"
+        );
+
+
+    if (oldNotification) {
+
+        oldNotification.remove();
+
+    }
+
+
+    const notification =
+        document.createElement("div");
+
+
+    notification.className =
+        "cart-notification";
+
+
+    notification.textContent =
+        message;
+
+
+    notification.style.position = "fixed";
+
+    notification.style.bottom = "20px";
+
+    notification.style.right = "20px";
+
+    notification.style.background =
+        "var(--olive)";
+
+    notification.style.color = "white";
+
+    notification.style.padding =
+        "12px 24px";
+
+    notification.style.borderRadius =
+        "25px";
+
+    notification.style.zIndex = "9999";
+
+    notification.style.fontSize = "14px";
+
+    notification.style.boxShadow =
+        "0 2px 10px rgba(0,0,0,0.2)";
+
+
+    document.body.appendChild(
+        notification
+    );
+
+
+    setTimeout(
+        function() {
+
+            notification.remove();
+
+        },
+        2000
+    );
+
+}
+
+
+
+// ==================== REMOVE CART ITEM ====================
+
+function removeFromCart(index) {
+
+    if (
+        index >= 0 &&
+        index < cart.length
+    ) {
+
+        cart.splice(index, 1);
+
+        saveCart();
+
+    }
+
+}
+
+
+
+// ==================== CLEAR CART ====================
+
+function clearCart() {
+
+    cart = [];
+
+    saveCart();
+
+}
+
+
+
+// ==================== TOGGLE CART ====================
+
+function toggleCart() {
+
+    closeMenu();
+
+
+    const panel =
+        document.getElementById("cartPanel");
+
+
+    if (panel) {
+
+        panel.classList.toggle("active");
+
+    }
+
+}
+
+
+
+// ==================== UPDATE CART UI ====================
+
+function updateCartUI() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+
+    const cartCount =
+        document.getElementById("cart-count");
+
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    if (!cartItems) {
+
+        return;
+
+    }
+
+
+    cartItems.innerHTML = "";
+
+
+    let total = 0;
+
+    let totalQuantity = 0;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+            <p class="empty-cart">
+                Your cart is empty.
+            </p>
+        `;
+
+    }
+
+
+    cart.forEach(function(item, index) {
+
+        const quantity =
+            Number(item.quantity) || 1;
+
+
+        const price =
+            Number(item.price) || 0;
+
+
+        const itemTotal =
+            price * quantity;
+
+
+        total += itemTotal;
+
+        totalQuantity += quantity;
+
+
+        cartItems.innerHTML += `
+
+            <div class="cart-item">
+
+                <span>
+                    ${item.name}
+                    × ${quantity}
+                    - ₹${itemTotal}
+                </span>
+
+
+                <span
+                    class="remove-btn"
+                    onclick="removeFromCart(${index})"
+                    title="Remove">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+
+    if (cartTotal) {
+
+        cartTotal.innerText =
+            "Total: ₹" + total;
+
+    }
+
+
+    if (cartCount) {
+
+        cartCount.innerText =
+            totalQuantity;
+
+    }
+
+}
+
+
+
+// ==================================================
+// ==================== WISHLIST =====================
+// ==================================================
+
+
+let wishlist = [];
+
+try {
+
+    wishlist =
+        JSON.parse(
+            localStorage.getItem("wishlist")
+        ) || [];
+
+} catch (error) {
+
+    wishlist = [];
+
+}
+
+
+if (!Array.isArray(wishlist)) {
+
+    wishlist = [];
+
+}
+
+
+
+// ==================== SAVE WISHLIST ====================
+
+function saveWishlist() {
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
+
+}
+
+
+
+// ==================== TOGGLE WISHLIST ====================
+
+function toggleWishlist(button, name, price) {
+
+    if (!isLoggedIn) {
+
+        window.location.href =
+            "{% url 'login' %}";
+
+        return;
+
+    }
+
+
+    const existingIndex =
+        wishlist.findIndex(
+            function(item) {
+
+                return item.name === name;
+
+            }
+        );
+
+
+    // REMOVE
+
+    if (existingIndex !== -1) {
+
+        wishlist.splice(
+            existingIndex,
+            1
+        );
+
+
+        button.classList.remove(
+            "active"
+        );
+
+
+        button.innerHTML =
+            '<i class="fa-regular fa-heart"></i>';
+
+
+        showNotification(
+            name + " removed from wishlist!"
+        );
+
+    }
+
+
+    // ADD
+
+    else {
+
+        wishlist.push({
+
+            name: name,
+
+            price: Number(price) || 0
+
+        });
+
+
+        button.classList.add(
+            "active"
+        );
+
+
+        button.innerHTML =
+            '<i class="fa-solid fa-heart"></i>';
+
+
+        showNotification(
+            name + " added to wishlist!"
+        );
+
+    }
+
+
+    saveWishlist();
+
+}
+
+
+
+// ==================== LOAD WISHLIST ====================
+
+function loadWishlist() {
+
+    const wishlistButtons =
+        document.querySelectorAll(
+            ".wishlist-btn"
+        );
+
+
+    wishlistButtons.forEach(
+        function(button) {
+
+            const onclickText =
+                button.getAttribute(
+                    "onclick"
+                );
+
+
+            if (!onclickText) {
+
+                return;
+
+            }
+
+
+            const match =
+                onclickText.match(
+                    /toggleWishlist\(this,\s*['"](.+?)['"],\s*(\d+)/
+                );
+
+
+            if (!match) {
+
+                return;
+
+            }
+
+
+            const name =
+                match[1];
+
+
+            const exists =
+                wishlist.some(
+                    function(item) {
+
+                        return item.name === name;
+
+                    }
+                );
+
+
+            if (exists) {
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-heart"></i>';
+
+            } else {
+
+                button.classList.remove(
+                    "active"
+                );
+
+
+                button.innerHTML =
+                    '<i class="fa-regular fa-heart"></i>';
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ==================== NAVBAR MENU ====================
+
+const menuToggle =
+    document.getElementById("menu-toggle");
+
+
+const navLinks =
+    document.getElementById("nav-links");
+
+
+if (menuToggle) {
+
+    menuToggle.onclick = function() {
+
+        if (navLinks) {
+
+            navLinks.classList.toggle(
+                "active"
+            );
+
+        }
+
+    };
+
+}
+
+
+
+function closeMenu() {
+
+    if (navLinks) {
+
+        navLinks.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+
+// ==================== CATEGORY FILTER ====================
+
+function filterProducts(category) {
+
+    const products =
+        document.querySelectorAll(
+            ".product-card"
+        );
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".category-filter-btn"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "noResults"
+        );
+
+
+    let visibleProducts = 0;
+
+
+    products.forEach(function(product) {
+
+        const productCategory =
+            product.dataset.category;
+
+
+        if (
+            category === "all" ||
+            productCategory === category
+        ) {
+
+            product.style.display = "";
+
+            visibleProducts++;
+
+        } else {
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+
+    // Active button
+
+    buttons.forEach(function(button) {
+
+        button.classList.remove(
+            "active"
+        );
+
+
+        if (
+            button.dataset.category ===
+            category
+        ) {
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+
+    // No results
+
+    if (noResults) {
+
+        if (visibleProducts === 0) {
+
+            noResults.style.display =
+                "block";
+
+        } else {
+
+            noResults.style.display =
+                "none";
+
+        }
+
+    }
+
+}
+
+
+
+// ==================== READ CATEGORY FROM URL ====================
+
+function loadCategoryFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const selectedCategory =
+        params.get("category");
+
+
+    const validCategories = [
+
+        "all",
+        "baby",
+        "tops",
+        "flowers",
+        "keychains",
+        "bags",
+        "accessories"
+
+    ];
+
+
+    if (
+        selectedCategory &&
+        validCategories.includes(
+            selectedCategory
+        )
+    ) {
+
+        filterProducts(
+            selectedCategory
+        );
+
+    } else {
+
+        filterProducts("all");
+
+    }
+
+}
+
+
+
+// ==================== FILTER BUTTON URL ====================
+
+function selectCategory(category) {
+
+    if (category === "all") {
+
+        window.location.href =
+            "{% url 'shop' %}";
+
+    } else {
+
+        window.location.href =
+            "{% url 'shop' %}?category=" +
+            category;
+
+    }
+
+}
+
+
+
+// ==================== START ====================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        // CART
+
+        setupCartButtons();
+
+        updateCartUI();
+
+
+        // WISHLIST
+
+        loadWishlist();
+
+
+        // CATEGORY
+
+        loadCategoryFromURL();
+
+    }
+);
+
+
+
+// ==================== CHECKOUT ====================
+
+function openCheckout() {
+
+    if (cart.length === 0) {
+
+        showNotification(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "{% url 'checkout' %}";
+
+}
+
+</script>
+
+
+</body>
+</html>

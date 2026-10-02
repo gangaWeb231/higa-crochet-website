@@ -1,0 +1,631 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>HIGA | Crochet Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'app1/css/mystyle.css' %}?v=16">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="{% static 'app1/images/logo.png' %}" alt="HIGA Logo">
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="nav-links-right" id="nav-links">
+        <a href="/" onclick="closeMenu()">HOME</a>
+        <a href="{% url 'shop' %}">SHOP</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+
+        <div class="nav-cart" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+
+      
+    <a href="{% url 'login' %}" class="nav-cart" title="Login">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    
+
+    </div>
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero" style="background-image: url('{% static "app1/images/hero.png" %}');">
+    <div class="hero-text">
+
+        
+        <h1>The Art of Handmade Elegance</h1>
+        <p>From heartfelt gifts to everyday treasures,every piece is handcrafted with care - Made to bring smiles that lasts.</p>
+        <a href="{% url 'shop' %}" class="btn">
+    Shop Now
+</a>
+
+<a href="{% url 'custom_order' %}" class="btn">
+    Custom Order
+</a>
+    </div>
+</section>
+
+
+<!-- SHOP BY CATEGORY -->
+<section class="categories-section">
+
+    <div class="section-title">
+        <h2>Shop by Category</h2>
+        <p>Discover handcrafted crochet collections for every occasion.</p>
+    </div>
+
+    <div class="categories-grid">
+
+        <!-- Baby -->
+        <a href="{% url 'shop' %}?category=baby" class="category-card">
+            <img src="{% static 'app1/images/frock.png' %}"
+                 class="categories-img"
+                 alt="Baby Collection">
+            <h3>Baby Collection</h3>
+        </a>
+
+        <!-- Tops -->
+        <a href="{% url 'shop' %}?category=tops" class="category-card">
+            <img src="{% static 'app1/images/cottagecore.png' %}"
+                 class="categories-img"
+                 alt="Tops">
+            <h3>Tops</h3>
+        </a>
+
+        <!-- Flowers -->
+        <a href="{% url 'shop' %}?category=flowers" class="category-card">
+            <img src="{% static 'app1/images/winerose.png' %}"
+                 class="categories-img"
+                 alt="Flowers">
+            <h3>Flowers</h3>
+        </a>
+
+        <!-- Keychains -->
+        <a href="{% url 'shop' %}?category=keychains" class="category-card">
+            <img src="{% static 'app1/images/chick.png' %}"
+                 class="categories-img"
+                 alt="Keychains">
+            <h3>Keychains</h3>
+        </a>
+
+        <!-- Bags -->
+        <a href="{% url 'shop' %}?category=bags" class="category-card">
+            <img src="{% static 'app1/images/sunflowerbag.png' %}"
+                 class="categories-img"
+                 alt="Bags">
+            <h3>Bags</h3>
+        </a>
+
+        <!-- Accessories -->
+        <a href="{% url 'shop' %}?category=accessories" class="category-card">
+            <img src="{% static 'app1/images/tulipband.png' %}"
+                 class="categories-img"
+                 alt="Accessories">
+            <h3>Accessories</h3>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- BEST SELLERS -->
+<section class="best-sellers" id="best-sellers">
+    <div class="section-title">
+        <h2>Best Sellers</h2>
+        <p>Our most loved handmade crochet creations.</p>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+            <a href="{% url 'product_details' 1 %}">
+                <img src="{% static 'app1/images/peplumtop.png' %}" alt="Peplum top">
+            </a>
+
+            <h3>Peplum Top/</h3>
+
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span>(4.8)</span>
+            </div>
+
+            <p class="price">₹2000</p>
+
+            <button class="order-btn" onclick="addToCart('Peplum top',2000)">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <a href="{% url 'product_details' 2 %}">
+                <img src="{% static 'app1/images/babybootie.png' %}" alt="Baby girl booties">
+            </a>
+
+            <h3>Baby booties</h3>
+
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>(5.0)</span>
+            </div>
+
+            <p class="price">₹450</p>
+
+            <button class="order-btn" onclick="addToCart('Baby booties',450)">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <a href="{% url 'product_details' 3 %}">
+                <img src="{% static 'app1/images/peony.png' %}" alt="Peony flowers">
+            </a>
+
+            <h3>Peony</h3>
+
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>(5.0)</span>
+            </div>
+
+            <p class="price">₹300</p>
+
+            <button class="order-btn" onclick="addToCart('Peony',300)">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <a href="{% url 'product_details' 4 %}">
+                <img src="{% static 'app1/images/chick.png' %}" alt="Cute Chick Keychain">
+            </a>
+
+            <h3>Chick</h3>
+
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span>(4.9)</span>
+            </div>
+
+            <p class="price">₹399</p>
+
+            <button class="order-btn" onclick="addToCart('Chick Keychain',399)">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+    <div class="view-all">
+        <a href="{% url 'shop' %}" class="btn">
+            View All Products
+        </a>
+    </div>
+</section>
+
+
+<!-- CUSTOM ORDER BANNER -->
+<section class="custom-order-banner">
+
+    <div class="custom-content">
+
+        <h2>Looking for Something Unique?</h2>
+
+        <p>
+            Create a personalized crochet piece made just for you.
+            Choose your favorite colors, style, and design, and we'll
+            bring your idea to life with love and care.
+        </p>
+
+        <a href="{% url 'custom_order' %}" class="custom-btn">
+            Request a Custom Order
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE HIGA -->
+<section class="why-higa">
+
+    <div class="section-title">
+        <h2>Why Choose HIGA?</h2>
+        <p>Every piece is thoughtfully handcrafted to bring warmth, comfort, and lasting memories.</p>
+    </div>
+
+    <div class="why-grid">
+
+        <!-- Card 1 -->
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3>Handcrafted with Love</h3>
+            <p>
+                Every crochet piece is carefully handmade with attention to every stitch,
+                making each creation truly unique.
+            </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3>Premium Quality</h3>
+            <p>
+                Crafted using soft, high-quality yarns that are durable, comfortable,
+                and made to last.
+            </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="why-card">
+            <div class="why-icon">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3>Made for Special Moments</h3>
+            <p>
+                Perfect for birthdays, baby showers, anniversaries, and meaningful
+                gifts for your loved ones.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contact-section" id="contact">
+
+    <div class="section-title">
+        <h2>Get in Touch</h2>
+        <p>Have a question or a custom order in mind? We'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h3>Location</h3>
+                    <p>Kerala, India</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p>higacrochet@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-brands fa-instagram"></i>
+                <div>
+                    <h3>Instagram</h3>
+                    <p>@higacrochet</p>
+                </div>
+            </div>
+
+        </div>
+
+        <form class="contact-form">
+
+            <input type="text" placeholder="Your Name">
+
+            <input type="email" placeholder="Your Email">
+
+            <textarea rows="6" placeholder="Your Message"></textarea>
+
+            <button type="submit" class="btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<section id="about">
+    <!-- About content -->
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-box">
+            <h3>HIGA</h3>
+            <p>
+                Handmade crochet creations crafted with love, care,
+                and timeless artistry.
+            </p>
+        </div>
+
+        <div class="footer-box">
+
+
+    <h4>Quick Links</h4>
+
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'shop' %}">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</div>
+
+        <!-- Customer -->
+        <div class="footer-box">
+            <h4>Customer</h4>
+
+            <a href="{% url 'custom_order' %}">Custom Orders</a>
+            <a href="{% url 'orders' %}">My Orders</a>
+            <a href="{% url 'login' %}">Login</a>
+
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-box">
+            <h4>Get in Touch</h4>
+
+            <p><i class="fa-solid fa-envelope"></i> hello@higa.com</p>
+
+            <p><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</p>
+
+            <div class="social-icons">
+
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+
+                <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+        <p>© 2026 HIGA Crochet Studio. All Rights Reserved.</p>
+    </div>
+
+</footer>
+
+
+<!-- CART PANEL -->
+<div id="cartPanel" class="cart-panel">
+
+    <div class="cart-header">
+        <h2>
+            Your Cart
+            <i class="fa-solid fa-cart-shopping"></i>
+        </h2>
+
+        <span class="close-cart" onclick="toggleCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+    </div>
+
+    <!-- CART VIEW -->
+    <div id="cartView">
+
+        <div id="cartItems"></div>
+
+        <h3 id="cartTotal">
+            Total: ₹0
+        </h3>
+
+       <button onclick="goToCheckout()">
+    Proceed to Checkout
+       </button>
+
+        <button onclick="clearCart()">
+            Clear Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+const isLoggedIn = "{{ request.user.is_authenticated|yesno:'true,false' }}" === "true";
+
+    function goToCheckout() {
+
+    if (cart.length === 0) {
+        showNotification("Your cart is empty!");
+        return;
+    }
+
+    window.location.href = "{% url 'checkout' %}";
+}
+// ==================== WISHLIST FUNCTIONS ====================
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function saveWishlist() {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+function toggleWishlist(element, name, price) {
+
+    if (!isLoggedIn) {
+        window.location.href = "{% url 'login' %}";
+        return;
+    }
+
+    const existingIndex = wishlist.findIndex(item => item.name === name);
+    const icon = element.querySelector('i');
+
+    if (existingIndex !== -1) {
+        wishlist.splice(existingIndex, 1);
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+        element.classList.remove('active');
+        showNotification(`${name} removed from wishlist`);
+    } else {
+        wishlist.push({ name, price });
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        element.classList.add('active');
+        showNotification(`${name} added to wishlist `);
+    }
+
+    saveWishlist();
+}
+// ==================== CART FUNCTIONS ====================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+}
+
+function addToCart(name, price) {
+
+    if (!isLoggedIn) {
+        window.location.href = "{% url 'login' %}";
+        return;
+    }
+
+    cart.push({ name, price });
+    saveCart();
+    showNotification(`${name} added to cart!`);
+}
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.innerHTML = message;
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.right = '20px';
+    notification.style.background = 'var(--olive)';
+    notification.style.color = 'white';
+    notification.style.padding = '12px 24px';
+    notification.style.borderRadius = '25px';
+    notification.style.zIndex = '9999';
+    notification.style.fontSize = '14px';
+    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+}
+
+function clearCart() {
+    cart = [];
+    saveCart();
+}
+
+function toggleCart() {
+    closeMenu();
+    const panel = document.getElementById("cartPanel");
+    if (panel) {
+        panel.classList.toggle("active");
+    }
+}
+
+function updateCartUI() {
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cartTotal");
+    
+    if (!cartItems) return;
+    
+    cartItems.innerHTML = "";
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        total += item.price;
+        cartItems.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name} - ₹${item.price}</span>
+                <span class="remove-btn" onclick="removeFromCart(${index})">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            </div>
+        `;
+    });
+    
+    if (cartTotal) cartTotal.innerText = "Total: ₹" + total;
+    if (cartCount) cartCount.innerText = cart.length;
+}
+
+
+// ==================== NAVBAR MENU FUNCTIONS ====================
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (menuToggle) {
+    menuToggle.onclick = () => {
+        if (navLinks) navLinks.classList.toggle("active");
+    };
+}
+
+function closeMenu() {
+    if (navLinks) navLinks.classList.remove("active");
+}
+
+// ==================== INITIALIZE ====================
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartUI();
+});
+console.log("✅ All JavaScript functions loaded and working!");
+
+</script>
+
+</body>
+
+</html>

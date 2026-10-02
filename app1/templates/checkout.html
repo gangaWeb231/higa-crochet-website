@@ -1,0 +1,1917 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HIGA | Checkout</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        :root {
+            --olive: #5F6F52;
+            --olive-dark: #4A5840;
+            --olive-light: #7A8F6A;
+
+            --clay: #C7673A;
+            --clay-dark: #A9522D;
+
+            --sand: #F5EDE0;
+            --sand-light: #FCF8F2;
+            --sand-dark: #E8DCC8;
+
+            --text-dark: #2C2C2C;
+            --text-muted: #6B6356;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--sand-light);
+            color: var(--text-dark);
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            width: calc(100% - 40px);
+            height: 62px;
+
+            margin: 12px auto 0;
+            padding: 7px 25px;
+
+            background: var(--olive);
+
+            border-radius: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.75;
+        }
+
+        /* ================= HEADER ================= */
+
+        .checkout-header {
+            text-align: center;
+            padding: 18px 20px 15px;
+        }
+
+        .checkout-header h1 {
+            font-family: 'Playfair Display', serif;
+
+            color: var(--olive);
+
+            font-size: 38px;
+
+            margin-bottom: 3px;
+        }
+
+        .checkout-header p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .checkout-container {
+
+            width: 90%;
+            max-width: 1150px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+
+            grid-template-columns: 0.92fr 1.08fr;
+
+            gap: 28px;
+
+            align-items: stretch;
+        }
+
+        /* ================= LEFT PRODUCT SIDE ================= */
+
+        .product-side {
+
+            background: white;
+
+            border: 1px solid var(--sand-dark);
+
+            border-radius: 24px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+            overflow: visible;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 0;
+        }
+
+        .product-info {
+            padding: 22px 30px 20px;
+
+            display: flex;
+            flex-direction: column;
+
+            height: 100%;
+        }
+
+        .product-info h2 {
+
+            font-family: 'Playfair Display', serif;
+
+            color: var(--olive);
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+        }
+
+        /* ================= CAROUSEL ================= */
+
+        .checkout-carousel {
+
+            position: relative;
+
+            width: 100%;
+
+            flex: 1;
+
+            min-height: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkout-items {
+
+            width: 100%;
+
+            height: 100%;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .checkout-item {
+
+            display: none;
+
+            width: 100%;
+            height: 100%;
+
+            min-height: 275px;
+
+            background: var(--sand-light);
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            border: 1px solid var(--sand-dark);
+
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .checkout-item.active {
+            display: flex;
+        }
+
+        /* PRODUCT IMAGE */
+
+        .checkout-item-image {
+
+            width: 175px;
+            height: 175px;
+
+            object-fit: contain;
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 5px;
+
+            margin-bottom: 13px;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        /* PRODUCT NAME */
+
+        .checkout-item-name {
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            color: var(--olive-dark);
+
+            margin-bottom: 3px;
+        }
+
+        /* PRODUCT PRICE */
+
+        .checkout-item-price {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            color: var(--clay);
+        }
+
+        /* QUANTITY */
+
+        .checkout-item-quantity {
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            color: var(--text-muted);
+
+            font-weight: 500;
+        }
+
+        /* ================= ARROWS ================= */
+
+        .carousel-arrow {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: var(--olive);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            transition: 0.25s;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .carousel-arrow:hover {
+
+            background: var(--clay);
+
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-arrow.prev {
+            left: -19px;
+        }
+
+        .carousel-arrow.next {
+            right: -19px;
+        }
+
+        /* ================= DOTS ================= */
+
+        .carousel-dots {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 12px;
+
+            min-height: 10px;
+        }
+
+        .carousel-dot {
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: var(--sand-dark);
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .carousel-dot.active {
+
+            width: 25px;
+
+            border-radius: 10px;
+
+            background: var(--olive);
+        }
+
+        /* ================= TOTAL ================= */
+
+        .total-box {
+
+            margin-top: 12px;
+
+            padding-top: 13px;
+
+            border-top: 2px solid var(--sand-dark);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .total-box span:first-child {
+
+            color: var(--olive);
+
+            font-size: 16px;
+
+            font-weight: 600;
+        }
+
+        .total-price {
+
+            color: var(--clay);
+
+            font-size: 24px;
+
+            font-weight: 700;
+        }
+
+        /* ================= RIGHT FORM ================= */
+
+        .checkout-form {
+
+            background: white;
+
+            border: 1px solid var(--sand-dark);
+
+            border-radius: 24px;
+
+            padding: 22px 30px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .checkout-form h2 {
+
+            font-family: 'Playfair Display', serif;
+
+            color: var(--olive);
+
+            font-size: 27px;
+
+            margin-bottom: 14px;
+        }
+
+        .name-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .form-group {
+
+            margin-bottom: 11px;
+        }
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: var(--olive-dark);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .required {
+            color: var(--clay);
+        }
+
+        .checkout-input,
+        .checkout-textarea {
+
+            width: 100%;
+
+            border: 1px solid #ddd;
+
+            border-radius: 11px;
+
+            background: var(--sand-light);
+
+            padding: 10px 13px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .checkout-input {
+            height: 43px;
+        }
+
+        .checkout-textarea {
+
+            height: 68px;
+
+            resize: none;
+        }
+
+        .checkout-input:focus,
+        .checkout-textarea:focus {
+
+            border-color: var(--olive);
+
+            background: white;
+
+            box-shadow: 0 0 0 3px rgba(95, 111, 82, 0.08);
+        }
+
+        /* ================= CONFIRM BUTTON ================= */
+
+        .confirm-order-btn {
+
+            width: 100%;
+
+            height: 47px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: var(--olive);
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 2px;
+
+            transition: 0.25s;
+        }
+
+        .confirm-order-btn:hover {
+
+            background: var(--olive-dark);
+
+            transform: translateY(-1px);
+        }
+
+        .confirm-order-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .confirm-order-btn i {
+            margin-right: 7px;
+        }
+
+        /* ================= BACK ================= */
+
+        .back-to-cart {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 8px;
+
+            padding: 8px;
+
+            border-radius: 30px;
+
+            color: var(--olive);
+
+            background: var(--sand);
+
+            border: 1px solid var(--sand-dark);
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+        .back-to-cart:hover {
+
+            background: var(--olive);
+
+            color: white;
+        }
+
+        /* ================= NOTE ================= */
+
+        .checkout-note {
+
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+
+            margin-top: 7px;
+        }
+
+        .checkout-note i {
+
+            color: var(--clay);
+
+            margin-right: 4px;
+        }
+
+        /* ================= EMPTY CART ================= */
+
+        .empty-cart {
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--text-muted);
+
+            gap: 8px;
+        }
+
+        .empty-cart i {
+
+            font-size: 30px;
+
+            color: var(--olive);
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+
+            background: var(--olive-dark);
+
+            color: white;
+
+            text-align: center;
+
+            padding: 9px;
+
+            font-size: 10px;
+
+            margin-top: 5px;
+        }
+
+        /* ================= DESKTOP SCREEN FIT ================= */
+
+        @media (min-width: 851px) {
+
+            body {
+                overflow: hidden;
+            }
+
+            .checkout-container {
+
+                height: calc(100vh - 155px);
+
+                max-height: 560px;
+            }
+
+            .product-side,
+            .checkout-form {
+                min-height: 0;
+            }
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 850px) {
+
+            body {
+                overflow: auto;
+            }
+
+            .checkout-container {
+
+                grid-template-columns: 1fr;
+
+                width: 92%;
+            }
+
+            .product-side {
+                min-height: 450px;
+            }
+
+            .checkout-item {
+                min-height: 300px;
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                width: calc(100% - 20px);
+
+                height: 58px;
+
+                margin-top: 8px;
+
+                padding: 6px 14px;
+            }
+
+            .logo img {
+
+                width: 43px;
+                height: 43px;
+            }
+
+            .nav-links {
+
+                gap: 12px;
+            }
+
+            .nav-links a {
+
+                font-size: 10px;
+            }
+
+            .checkout-header {
+
+                padding: 20px 15px 14px;
+            }
+
+            .checkout-header h1 {
+
+                font-size: 31px;
+            }
+
+            .checkout-header p {
+
+                font-size: 11px;
+            }
+
+            .checkout-container {
+
+                width: 94%;
+
+                gap: 18px;
+            }
+
+            .product-info {
+
+                padding: 20px;
+            }
+
+            .product-info h2 {
+
+                font-size: 24px;
+            }
+
+            .checkout-item {
+
+                min-height: 270px;
+            }
+
+            .checkout-item-image {
+
+                width: 145px;
+                height: 145px;
+            }
+
+            .checkout-form {
+
+                padding: 20px;
+            }
+
+            .name-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+            .carousel-arrow.prev {
+                left: -10px;
+            }
+
+            .carousel-arrow.next {
+                right: -10px;
+            }
+        }
+
+        /* ================= SUCCESS POPUP ================= */
+
+.success-popup {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+.success-box {
+
+    width: 360px;
+
+    max-width: 90%;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+    animation: popupShow 0.25s ease;
+}
+
+.success-icon {
+
+    width: 65px;
+
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #5F6F52;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+.success-box h2 {
+
+    font-family: 'Playfair Display', serif;
+
+    color: #5F6F52;
+
+    margin-bottom: 8px;
+
+    font-size: 25px;
+}
+
+.success-box p {
+
+    color: #6B6356;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.success-box button {
+
+    border: none;
+
+    background: #5F6F52;
+
+    color: white;
+
+    padding: 10px 35px;
+
+    border-radius: 30px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.success-box button:hover {
+
+    background: #4A5840;
+}
+
+@keyframes popupShow {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <img
+                src="{% static 'app1/images/logo.png' %}"
+                alt="HIGA Logo">
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{% url 'index' %}">
+                HOME
+            </a>
+
+            <a href="{% url 'shop' %}">
+                SHOP
+            </a>
+
+            <a href="{% url 'index' %}#contact">
+                CONTACT
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="checkout-header">
+
+        <h1>
+            Complete Your Order
+        </h1>
+
+        <p>
+            Just a few details and your handmade HIGA creation will be on its way.
+        </p>
+
+    </section>
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <main class="checkout-container">
+
+        <!-- ================= LEFT PRODUCT ================= -->
+
+        <section class="product-side">
+
+            <div class="product-info">
+
+                <h2>
+                    Your Order
+                </h2>
+
+                <!-- CAROUSEL -->
+
+                <div class="checkout-carousel">
+
+                    <!-- PREVIOUS -->
+
+                    <button
+                        type="button"
+                        class="carousel-arrow prev"
+                        onclick="prevProduct()">
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+                    <!-- PRODUCTS -->
+
+                    <div
+                        id="checkoutItems"
+                        class="checkout-items">
+                    </div>
+
+                    <!-- NEXT -->
+
+                    <button
+                        type="button"
+                        class="carousel-arrow next"
+                        onclick="nextProduct()">
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- DOTS -->
+
+                <div
+                    id="carouselDots"
+                    class="carousel-dots">
+                </div>
+
+                <!-- TOTAL -->
+
+                <div class="total-box">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span
+                        id="checkoutTotal"
+                        class="total-price">
+
+                        ₹0
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= CUSTOMER DETAILS ================= -->
+
+        <section class="checkout-form">
+
+            <h2>
+                Customer Details
+            </h2>
+
+            <!-- FIRST + LAST -->
+
+            <div class="name-row">
+
+                <div class="form-group">
+
+                    <label>
+                        First Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        class="checkout-input"
+                        placeholder="First Name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Last Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        class="checkout-input"
+                        placeholder="Last Name"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    class="checkout-input"
+                    placeholder="Phone Number"
+                    required>
+
+            </div>
+
+            <!-- ADDRESS -->
+
+            <div class="form-group">
+
+                <label>
+                    Delivery Address
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="address"
+                    class="checkout-textarea"
+                    placeholder="Enter your complete delivery address"
+                    required></textarea>
+
+            </div>
+
+            <!-- SPECIAL INSTRUCTIONS -->
+
+            <div class="form-group">
+
+                <label>
+                    Special Instructions
+                </label>
+
+                <textarea
+                    id="notes"
+                    class="checkout-textarea"
+                    placeholder="Any special instructions? (Optional)"></textarea>
+
+            </div>
+
+            <!-- CONFIRM -->
+
+            <button
+                type="button"
+                id="confirmOrderBtn"
+                class="confirm-order-btn"
+                onclick="placeOrder()">
+
+                <i class="fa-solid fa-check"></i>
+
+                Confirm Order
+
+            </button>
+
+            <!-- BACK -->
+
+            <a
+                href="{% url 'index' %}"
+                class="back-to-cart">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Cart
+
+            </a>
+
+            <!-- NOTE -->
+
+            <div class="checkout-note">
+
+                <i class="fa-solid fa-heart"></i>
+
+                Your order will be carefully handmade and packed with love.
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        © 2026 HIGA Crochet Studio. All Rights Reserved.
+
+    </footer>
+
+    <!-- ================= SUCCESS POPUP ================= -->
+
+<div id="successPopup" class="success-popup">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <p>
+            Thank you for your order ❤️
+        </p>
+
+        <button
+            type="button"
+            onclick="goToAccount()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    /* ================= PRODUCT IMAGE MAP ================= */
+
+    const productImages = {
+
+        "Peplum top":
+            "{% static 'app1/images/peplumtop.png' %}",
+
+        "Baby booties":
+            "{% static 'app1/images/babybootie.png' %}",
+
+        "Peony":
+            "{% static 'app1/images/peony.png' %}",
+
+        "Chick Keychain":
+            "{% static 'app1/images/chick.png' %}",
+
+        "Bow frock":
+            "{% static 'app1/images/frock.png' %}",
+
+        "Bow Handbag":
+            "{% static 'app1/images/bowbag.png' %}",
+
+        "Cardigan":
+            "{% static 'app1/images/cardigan.png' %}",
+
+        "Cottagecore Top":
+            "{% static 'app1/images/cottagecore.png' %}",
+
+        "Daisy Keychain":
+            "{% static 'app1/images/daisy.png' %}",
+
+        "Bow Lilly Flower":
+            "{% static 'app1/images/lilly.png' %}",
+
+        "Panda Keychain":
+            "{% static 'app1/images/panda.png' %}",
+
+        "Romper Set":
+            "{% static 'app1/images/romper.png' %}",
+
+        "Scrunchies":
+            "{% static 'app1/images/scrunchies.png' %}",
+
+        "Strawberry Keychain":
+            "{% static 'app1/images/strawberry.png' %}",
+
+        "Sunflower Bag":
+            "{% static 'app1/images/sunflowerbag.png' %}",
+
+        "Tote Bag":
+            "{% static 'app1/images/totebag.jpeg' %}",
+
+        "Tulip Headband":
+            "{% static 'app1/images/tulipband.png' %}",
+
+        "Wine Rose":
+            "{% static 'app1/images/winerose.png' %}",
+
+    };
+
+
+    /* ================= CART ================= */
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    /* ================= BUY NOW PRODUCT ================= */
+
+    let buyNowProduct =
+        JSON.parse(localStorage.getItem("buyNowProduct")) || null;
+
+
+    /* ================= CHECKOUT MODE ================= */
+
+    const urlParams =
+        new URLSearchParams(window.location.search);
+
+    const isBuyNow =
+        urlParams.get("buy_now") === "true";
+
+
+    /* ================= NORMALIZE CART ================= */
+
+    cart = cart.map(function(item) {
+
+        return {
+
+            name: item.name || "",
+
+            price: Number(item.price) || 0,
+
+            image:
+                item.image ||
+                productImages[item.name] ||
+                "{% static 'app1/images/logo.png' %}",
+
+            quantity:
+                Number(item.quantity) > 0
+                    ? Number(item.quantity)
+                    : 1
+
+        };
+
+    });
+
+
+    /* ================= NORMALIZE BUY NOW ================= */
+
+    if (buyNowProduct) {
+
+        buyNowProduct = {
+
+            name: buyNowProduct.name || "",
+
+            price: Number(buyNowProduct.price) || 0,
+
+            image:
+                buyNowProduct.image ||
+                productImages[buyNowProduct.name] ||
+                "{% static 'app1/images/logo.png' %}",
+
+            quantity:
+                Number(buyNowProduct.quantity) > 0
+                    ? Number(buyNowProduct.quantity)
+                    : 1
+
+        };
+
+    }
+
+
+    /* ================= PRODUCTS TO CHECKOUT ================= */
+
+    let checkoutCart = [];
+
+
+    if (isBuyNow && buyNowProduct) {
+
+        // BUY NOW → only selected product
+
+        checkoutCart = [buyNowProduct];
+
+    } else {
+
+        // NORMAL CART CHECKOUT
+
+        checkoutCart = cart;
+
+    }
+
+
+    let currentProduct = 0;
+
+
+    /* ================= DISPLAY PRODUCTS ================= */
+
+    function displayCheckoutItems() {
+
+        const checkoutItems =
+            document.getElementById("checkoutItems");
+
+        const checkoutTotal =
+            document.getElementById("checkoutTotal");
+
+        const carouselDots =
+            document.getElementById("carouselDots");
+
+
+        checkoutItems.innerHTML = "";
+
+        carouselDots.innerHTML = "";
+
+
+        let total = 0;
+
+
+        /* ================= EMPTY ================= */
+
+        if (checkoutCart.length === 0) {
+
+            checkoutItems.innerHTML = `
+
+                <div class="empty-cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <p>
+                        Your cart is empty.
+                    </p>
+
+                </div>
+
+            `;
+
+            checkoutTotal.innerText = "₹0";
+
+
+            document
+                .querySelectorAll(".carousel-arrow")
+                .forEach(function(arrow) {
+
+                    arrow.style.display = "none";
+
+                });
+
+
+            return;
+
+        }
+
+
+        /* ================= PRODUCTS ================= */
+
+        checkoutCart.forEach(function(item, index) {
+
+            const price =
+                Number(item.price) || 0;
+
+            const quantity =
+                Number(item.quantity) || 1;
+
+            const itemTotal =
+                price * quantity;
+
+            total += itemTotal;
+
+
+            const image =
+                item.image ||
+                productImages[item.name] ||
+                "{% static 'app1/images/logo.png' %}";
+
+
+            checkoutItems.innerHTML += `
+
+                <div
+                    class="checkout-item ${index === 0 ? "active" : ""}">
+
+                    <img
+                        src="${image}"
+                        class="checkout-item-image"
+                        alt="${item.name}">
+
+                    <div class="checkout-item-name">
+
+                        ${item.name}
+
+                    </div>
+
+                    <div class="checkout-item-price">
+
+                        ₹${price}
+
+                    </div>
+
+                    <div class="checkout-item-quantity">
+
+                        Quantity: ${quantity}
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            /* ================= DOT ================= */
+
+            carouselDots.innerHTML += `
+
+                <span
+                    class="carousel-dot ${index === 0 ? "active" : ""}"
+                    onclick="showProduct(${index})">
+                </span>
+
+            `;
+
+        });
+
+
+        checkoutTotal.innerText =
+            "₹" + total;
+
+
+        currentProduct = 0;
+
+
+        /* ================= ARROWS ================= */
+
+        const arrows =
+            document.querySelectorAll(".carousel-arrow");
+
+
+        if (checkoutCart.length <= 1) {
+
+            arrows.forEach(function(arrow) {
+
+                arrow.style.display = "none";
+
+            });
+
+        } else {
+
+            arrows.forEach(function(arrow) {
+
+                arrow.style.display = "flex";
+
+            });
+
+        }
+
+    }
+
+
+    /* ================= SHOW PRODUCT ================= */
+
+    function showProduct(index) {
+
+        const products =
+            document.querySelectorAll(".checkout-item");
+
+        const dots =
+            document.querySelectorAll(".carousel-dot");
+
+
+        if (!products.length) {
+            return;
+        }
+
+
+        if (index < 0) {
+
+            index =
+                products.length - 1;
+
+        }
+
+
+        if (index >= products.length) {
+
+            index = 0;
+
+        }
+
+
+        products.forEach(function(product) {
+
+            product.classList.remove("active");
+
+        });
+
+
+        dots.forEach(function(dot) {
+
+            dot.classList.remove("active");
+
+        });
+
+
+        products[index].classList.add("active");
+
+
+        if (dots[index]) {
+
+            dots[index].classList.add("active");
+
+        }
+
+
+        currentProduct = index;
+
+    }
+
+
+    /* ================= NEXT ================= */
+
+    function nextProduct() {
+
+        showProduct(
+            currentProduct + 1
+        );
+
+    }
+
+
+    /* ================= PREVIOUS ================= */
+
+    function prevProduct() {
+
+        showProduct(
+            currentProduct - 1
+        );
+
+    }
+
+
+    /* ================= CSRF ================= */
+
+    function getCookie(name) {
+
+        let cookieValue = null;
+
+
+        if (document.cookie && document.cookie !== "") {
+
+            const cookies =
+                document.cookie.split(";");
+
+
+            for (let i = 0; i < cookies.length; i++) {
+
+                const cookie =
+                    cookies[i].trim();
+
+
+                if (
+                    cookie.substring(
+                        0,
+                        name.length + 1
+                    ) === (name + "=")
+                ) {
+
+                    cookieValue =
+                        decodeURIComponent(
+                            cookie.substring(
+                                name.length + 1
+                            )
+                        );
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        return cookieValue;
+
+    }
+
+
+    /* ================= PLACE ORDER ================= */
+
+    async function placeOrder() {
+
+        const firstName =
+            document.getElementById("firstName")
+            .value.trim();
+
+
+        const lastName =
+            document.getElementById("lastName")
+            .value.trim();
+
+
+        const phone =
+            document.getElementById("phone")
+            .value.trim();
+
+
+        const address =
+            document.getElementById("address")
+            .value.trim();
+
+
+        const notes =
+            document.getElementById("notes")
+            .value.trim();
+
+
+        /* ================= REQUIRED FIELDS ================= */
+
+        if (
+            !firstName ||
+            !lastName ||
+            !phone ||
+            !address
+        ) {
+
+            alert(
+                "Please fill all required fields."
+            );
+
+            return;
+
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        if (checkoutCart.length === 0) {
+
+            alert(
+                "Your cart is empty."
+            );
+
+            return;
+
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        const button =
+            document.getElementById("confirmOrderBtn");
+
+
+        button.disabled = true;
+
+
+        button.innerHTML = `
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Placing Order...
+
+        `;
+
+
+        /* ================= SEND TO DJANGO ================= */
+
+        try {
+
+            const response =
+                await fetch(
+                    "{% url 'place_order' %}",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "X-CSRFToken":
+                                getCookie("csrftoken")
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                first_name:
+                                    firstName,
+
+                                last_name:
+                                    lastName,
+
+                                phone:
+                                    phone,
+
+                                address:
+                                    address,
+
+                                notes:
+                                    notes,
+
+                                cart:
+                                    checkoutCart
+
+                            })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            /* ================= SUCCESS ================= */
+
+            if (response.ok && result.success) {
+
+                /*
+                 * BUY NOW:
+                 * Do NOT delete existing cart products.
+                 */
+
+                if (isBuyNow) {
+
+                    localStorage.removeItem(
+                        "buyNowProduct"
+                    );
+
+                } else {
+
+                    /*
+                     * NORMAL CART CHECKOUT:
+                     * Clear cart after successful order.
+                     */
+
+                    localStorage.removeItem(
+                        "cart"
+                    );
+
+                    cart = [];
+
+                }
+
+
+                checkoutCart = [];
+
+
+                /* SHOW SUCCESS POPUP */
+
+                showSuccessPopup();
+
+
+                return;
+
+            }
+
+
+            /* ================= ERROR ================= */
+
+            alert(
+                result.message ||
+                "Unable to place order. Please try again."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Order error:",
+                error
+            );
+
+
+            alert(
+                "Something went wrong. Please try again."
+            );
+
+        }
+
+
+        /* ================= ENABLE BUTTON ================= */
+
+        button.disabled = false;
+
+
+        button.innerHTML = `
+
+            <i class="fa-solid fa-check"></i>
+
+            Confirm Order
+
+        `;
+
+    }
+
+
+    /* ================= SUCCESS POPUP ================= */
+
+    function showSuccessPopup() {
+
+        document.getElementById(
+            "successPopup"
+        ).style.display = "flex";
+
+    }
+
+
+    /* ================= GO TO ACCOUNT ================= */
+
+    function goToAccount() {
+
+        window.location.href =
+            "{% url 'account' %}";
+
+    }
+
+
+    /* ================= INITIALIZE ================= */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            displayCheckoutItems();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
